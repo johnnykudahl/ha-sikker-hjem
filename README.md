@@ -27,7 +27,7 @@ These codes have been **confirmed from a real S7Pro**:
 | `3401` | Armed | Keypad/remote/tag name, e.g. `Keyboard` | panel → `armed_away` |
 | `1401` | Disarmed | Keypad/remote/tag name, e.g. `Keyboard`, `<name> tag` | panel → `disarmed` |
 | `1101` | SOS / personal emergency | App user name who pressed SOS | panel → `triggered`. Repeated about every 5 s until disarmed, with no restore. |
-| `1130` | Burglary alarm. Sent **when a delayed door opens** (start of the entry delay), and **again when the delay expires and the siren starts** (~61 s later for a 60 s delay, followed by two more within ~1.5 s) | Sensor name, e.g. `Fordør sensor` | first → `pending`; the repeat at the end of the delay → `triggered` |
+| `1130` | Burglary alarm. Sent **when a delayed door opens** (start of the entry delay), and **again when the delay expires and the siren starts** (~61 s later for a 60 s delay). In a test with the SmartBox's built-in siren plus two wireless sirens, three `1130`s arrived: one at once and two about 1.5 s later. This is probably one per siren, built-in first and then each wireless siren (unconfirmed) | Sensor name, e.g. `Fordør sensor` | first → `pending`; the repeat at the end of the delay → `triggered` |
 | `3130` | Burglary restore, which means the sensor is back to normal (e.g. the door was closed) | Sensor name | no state change |
 | `1602` | Periodic test report | none | no state change. Sent **every hour**; the timer restarts after any other message. |
 | `1381` | Sensor lost radio contact (RF supervision) | Sensor name, e.g. `Fordør sensor` | `…_connectivity` → off |

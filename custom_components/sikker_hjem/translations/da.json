@@ -1,0 +1,64 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sikker Hjem alarmmodtager",
+        "description": "Home Assistant fungerer som alarmmodtager. Indstil alarmcentralen til at sende til denne Home Assistants IP-adresse og porten nedenfor med SIA DC-09 og Contact-ID (ADM-CID), uden kryptering.",
+        "data": {
+          "port": "Port",
+          "account": "Kontonummer"
+        },
+        "data_description": {
+          "port": "TCP-port, der lyttes på for beskeder fra alarmcentralen.",
+          "account": "Valgfri. Accepter kun beskeder for dette kontonummer (f.eks. 1234). Lad feltet være tomt for at acceptere alle."
+        }
+      }
+    },
+    "error": {
+      "port_in_use": "Porten er allerede i brug. Vælg en anden port.",
+      "invalid_account": "Kontonummeret skal være 3-16 hexadecimale cifre."
+    },
+    "abort": {
+      "already_configured": "Der er allerede en modtager på denne port."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Indgangsforsinkelse",
+        "description": "Centralen melder en indbrudsalarm, så snart en forsinket dør åbnes, altså når indgangsforsinkelsen starter. Home Assistant viser 'afventer' under forsinkelsen og skifter først til 'udløst', hvis alarmen ikke frakobles i tide.",
+        "data": {
+          "entry_delay": "Indgangsforsinkelse (sekunder)",
+          "delayed_sensors": "Forsinkede sensorer"
+        },
+        "data_description": {
+          "entry_delay": "Sæt den til centralens indgangsforsinkelse. 0 = alle indbrudsalarmer udløses med det samme.",
+          "delayed_sensors": "Kommasepareret liste med sensornavne præcis som i S7Pro-appen, f.eks. Fordør sensor. Sensorer, der ikke står på listen (vinduer, PIR, andre døre), udløses med det samme. Lad feltet være tomt, hvis ingen sensor har indgangsforsinkelse."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "connectivity": {
+        "name": "{sensor} forbindelse"
+      }
+    },
+    "sensor": {
+      "last_event": {
+        "name": "Seneste hændelse"
+      },
+      "last_message": {
+        "name": "Seneste besked"
+      }
+    }
+  },
+  "exceptions": {
+    "read_only": {
+      "message": "Sikker Hjem-alarmen kan kun til- og frakobles på centralen eller i appen."
+    },
+    "cannot_listen": {
+      "message": "Kunne ikke lytte på port {port}: {error}"
+    }
+  }
+}

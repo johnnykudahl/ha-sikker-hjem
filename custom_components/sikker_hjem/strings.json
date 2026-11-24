@@ -1,0 +1,64 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sikker Hjem alarm receiver",
+        "description": "Home Assistant will act as the alarm receiving station. In the alarm panel, set the receiver to this Home Assistant's IP address and the port below, using SIA DC-09 with Contact-ID (ADM-CID) and encryption turned off.",
+        "data": {
+          "port": "Port",
+          "account": "Account number"
+        },
+        "data_description": {
+          "port": "TCP port to listen on for messages from the panel.",
+          "account": "Optional. Only accept messages for this account number (e.g. 1234). Leave empty to accept any account."
+        }
+      }
+    },
+    "error": {
+      "port_in_use": "The port is already in use. Choose another port.",
+      "invalid_account": "The account number must be 3-16 hexadecimal digits."
+    },
+    "abort": {
+      "already_configured": "A receiver is already configured on this port."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Entry delay",
+        "description": "The panel reports a burglary alarm as soon as a delayed door opens, at the start of the entry delay. Home Assistant shows 'pending' during the delay and only switches to 'triggered' if the alarm is not disarmed in time.",
+        "data": {
+          "entry_delay": "Entry delay (seconds)",
+          "delayed_sensors": "Delayed sensors"
+        },
+        "data_description": {
+          "entry_delay": "Set this to the panel's entry delay. 0 = every burglary alarm triggers immediately.",
+          "delayed_sensors": "Comma separated sensor names exactly as in the S7Pro app, e.g. Fordør sensor. Sensors not listed (windows, PIRs, other doors) trigger immediately. Leave empty if no sensor has an entry delay."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "connectivity": {
+        "name": "{sensor} connectivity"
+      }
+    },
+    "sensor": {
+      "last_event": {
+        "name": "Last event"
+      },
+      "last_message": {
+        "name": "Last message"
+      }
+    }
+  },
+  "exceptions": {
+    "read_only": {
+      "message": "The Sikker Hjem panel can only be armed or disarmed on the panel or in its app."
+    },
+    "cannot_listen": {
+      "message": "Could not listen on port {port}: {error}"
+    }
+  }
+}

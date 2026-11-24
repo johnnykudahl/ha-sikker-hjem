@@ -24,8 +24,9 @@ These codes have been **confirmed from a real S7Pro**:
 
 | CID | Meaning | Name block `[I…]` | Home Assistant |
 |---|---|---|---|
-| `3401` | Armed | Keypad/remote/tag name, e.g. `Keyboard` | panel → `armed_away` |
-| `1401` | Disarmed | Keypad/remote/tag name, e.g. `Keyboard`, `<name> tag` | panel → `disarmed` |
+| `3401` | Armed away | Keypad, remote, tag or app user name, e.g. `Keyboard` | panel → `armed_away` |
+| `3456` | Armed home ("Home armed" in the app; Contact-ID "partial arm") | Keypad, remote, tag or app user name | panel → `armed_home` |
+| `1401` | Disarmed, from either away or home mode | Keypad, remote, tag or app user name, e.g. `Keyboard`, `<name> tag` | panel → `disarmed` |
 | `1101` | SOS / personal emergency | App user name who pressed SOS | panel → `triggered`. Repeated about every 5 s until disarmed, with no restore. |
 | `1130` | Burglary alarm. Sent **when a delayed door opens** (start of the entry delay), and **again when the delay expires and the siren starts** (~61 s later for a 60 s delay). In a test with the SmartBox's built-in siren plus two wireless sirens, three `1130`s arrived: one at once and two about 1.5 s later. This is probably one per siren, built-in first and then each wireless siren (unconfirmed) | Sensor name, e.g. `Fordør sensor` | first → `pending`; the repeat at the end of the delay → `triggered` |
 | `3130` | Burglary restore, which means the sensor is back to normal (e.g. the door was closed) | Sensor name | no state change |
@@ -39,7 +40,7 @@ These codes are **expected but not yet confirmed** on the S7Pro (please report c
 |---|---|---|
 | `1134` | Entry/exit burglary | like `1130` |
 | `1406` | Cancel by user (not sent: disarming during the siren sends a normal `1401`) | event only |
-| `3441` / `3456` | Armed home / partial | `armed_home` |
+| `3441` | Armed stay (not used by the S7Pro, which sends `3456` for home mode) | `armed_home` |
 | `1110`, `1154`, `1162` | Fire / water leak / CO | `triggered` |
 | `1301` / `3301` | AC power loss / restore | event only |
 | `1302` / `3302` | Low system battery / restore | event only |

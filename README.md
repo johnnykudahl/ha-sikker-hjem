@@ -88,10 +88,26 @@ Every unknown code still fires `sikker_hjem_event`, described as "Contact-ID eve
 2. Restart Home Assistant.
 3. Go to **Settings → Devices & services → Add integration → Sikker Hjem**.
 4. Enter the port (default `5555`). Optionally enter your account number so that only that account is accepted.
-5. In the panel's alarm receiving centre settings, point it at Home Assistant's IP and that port. Use DC-09 / ADM-CID with **encryption off**.
+5. Point the panel at Home Assistant (see [Panel setup in the S7Pro app](#panel-setup-in-the-s7pro-app) below).
 6. Arm and disarm once. The panel entity should follow.
 
 Requires Home Assistant 2024.11 or newer. There are no external Python dependencies.
+
+## Panel setup in the S7Pro app
+
+In the SikkertHjem app, go to **Settings → Security Notification Settings → CMS** and fill in the form:
+
+| Field | Value |
+|---|---|
+| Protocol | **SIA Protocol** (the panel then sends DC-09 frames with Contact-ID / ADM-CID events) |
+| Primary IP Address → IP Address | Home Assistant's IP address, e.g. `192.168.1.10` (give Home Assistant a fixed IP or a DHCP reservation) |
+| Primary IP Address → Port | The port you entered in the integration (default `5555`) |
+| Secondary IP Address (Optional) | Leave empty |
+| Account Number | Any 3–16 digit number, e.g. `1234`. If you entered an account number in the integration, it must match. |
+| Encryption | **Off**. Encrypted frames are not supported yet. |
+| Encryption Key | Leave empty |
+
+Tap **Save**. To check it works, arm and disarm once: with debug logging on, each event appears in the Home Assistant log as `Frame from …` followed by `Reply to …"ACK"…`.
 
 ## Entry delay options
 

@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Sikker Hjem alarmmodtager",
-        "description": "Home Assistant fungerer som alarmmodtager. Indstil alarmcentralen til at sende til denne Home Assistants IP-adresse og porten nedenfor med SIA DC-09 og Contact-ID (ADM-CID), uden kryptering.",
+        "description": "Home Assistant fungerer som alarmmodtager. Gå derefter i SikkertHjem-appen til Indstillinger → Security Notification Settings → CMS, vælg SIA Protocol, og indtast denne Home Assistants IP-adresse, porten nedenfor og det samme kontonummer. Lad kryptering være slået fra.",
         "data": {
           "port": "Port",
           "account": "Kontonummer"

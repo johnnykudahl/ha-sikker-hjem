@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Sikker Hjem alarm receiver",
-        "description": "Home Assistant will act as the alarm receiving station. In the alarm panel, set the receiver to this Home Assistant's IP address and the port below, using SIA DC-09 with Contact-ID (ADM-CID) and encryption turned off.",
+        "description": "Home Assistant will act as the alarm receiving station. Afterwards, in the SikkertHjem app go to Settings → Security Notification Settings → CMS, choose SIA Protocol, and enter this Home Assistant's IP address, the port below and the same account number. Leave Encryption off.",
         "data": {
           "port": "Port",
           "account": "Account number"
